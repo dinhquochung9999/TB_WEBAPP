@@ -133,7 +133,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, useSlots, watch } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 type Variant = "success" | "error" | "warning" | "info";
 
@@ -190,11 +190,10 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue", "confirm"]);
 
-const slots = useSlots();
+
 const modalRef = ref<HTMLElement | null>(null);
 
 const variantValue = computed(() => props.variant as Variant);
-const hasCustomFooter = computed(() => !!slots.footer);
 
 const close = () => {
   if (props.loading) return;
