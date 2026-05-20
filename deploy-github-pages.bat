@@ -1,46 +1,54 @@
 @echo off
 echo ========================================
-echo Deploy to GitHub Pages
+echo Deploy to GitHub Pages - Manual Steps
 echo ========================================
 echo.
 
-echo Step 1: Initializing Git...
-git init
-git add .
-git commit -m "Deploy: Add GitHub Actions workflow for GitHub Pages deployment
-
-- Configure vite.config.ts with /TB_WEBAPP/ base path
-- Add GitHub Actions workflow for automatic build and deploy
-- Deploy to https://dinhquochung9999.github.io/TB_WEBAPP/
-
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
-
-echo.
-echo Step 2: Adding GitHub remote...
+echo Step 1: Reset git remote...
+git remote remove origin
 git remote add origin https://github.com/dinhquochung9999/TB_WEBAPP.git
 
 echo.
-echo Step 3: Renaming branch to main...
+echo Step 2: Creating initial commit...
+git add .
+git commit -m "Initial commit: Vue 3 dashboard deployment
+
+- Add MainLayout with fixed sidebar and footer
+- Add dark/light mode toggle
+- Add ProfileView, SettingsView pages
+- Add ExternalAppView and AnotherAppView
+- Responsive sidebar with collapse
+- Configured for GitHub Pages deployment
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>" || echo Already committed
+
+echo.
+echo Step 3: Rename branch to main...
 git branch -M main
 
 echo.
 echo Step 4: Pushing to GitHub...
+echo Please authenticate with your GitHub credentials when prompted.
+echo You can use:
+echo   - GitHub username + Personal Access Token
+echo   - SSH key
+echo.
 git push -u origin main --force
 
 echo.
 echo ========================================
-echo Deployment setup complete!
+echo If authentication fails:
 echo ========================================
 echo.
-echo Your web will be available at:
-echo https://dinhquochung9999.github.io/TB_WEBAPP/
+echo Option 1: Use Personal Access Token
+echo 1. Go to https://github.com/settings/tokens
+echo 2. Create new token with 'repo' permission
+echo 3. Use token as password when prompted
 echo.
-echo GitHub Actions will automatically build and deploy when you push to main branch.
-echo.
-echo To enable GitHub Pages:
-echo 1. Go to https://github.com/dinhquochung9999/TB_WEBAPP/settings/pages
-echo 2. Select "Deploy from a branch"
-echo 3. Choose "gh-pages" branch
-echo 4. Click Save
+echo Option 2: Use SSH
+echo 1. Generate SSH key: ssh-keygen -t ed25519
+echo 2. Add to GitHub: https://github.com/settings/keys
+echo 3. Change remote: git remote set-url origin git@github.com:dinhquochung9999/TB_WEBAPP.git
 echo.
 pause
+
